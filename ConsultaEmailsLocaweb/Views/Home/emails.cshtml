@@ -1,0 +1,263 @@
+﻿
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout_emails.cshtml";
+}
+
+<div class="cabecalho">
+
+    <div>
+        <img src="~/img/ico-smtp.png" width="50" height="50" />
+        <span>SMP Locaweb</span>
+    </div>
+    <img src="~/img/logoUser.PNG" width="300" height="50" />
+</div>
+
+<div class="pesquisa">
+    <form action="/home/pesquisa_emails" method="POST">
+        <h4 class="ls-label-text">Pesquisar:</h4>
+        <span>
+            <label for="data_inicial">Data Inicial:</label>
+            <input type="text" id="data_inicial" name="data_inicial" onkeypress="mascaraData( this, event )" maxlength="10" class="ls-input-text" />
+            <label for="data_final">Data Final:</label>
+            <input type="text" id="data_final" name="data_final" onkeypress="mascaraData( this, event )" maxlength="10" />
+            <br />
+            <div>
+                <label for="destinatario">Destinatário:</label>
+
+                <input type="text" id="destinatario" name="destinatario" class="ls-input-text" />
+            </div>
+        </span>
+        <input type="submit" class="btn btn-success btn-bkg" value="Pesquisar" />
+    </form>
+</div>
+
+<style>
+    .pesquisa {
+        margin-top: 3vh;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    label {
+        width: 6rem;
+    }
+
+    #destinatario {
+        width: 20rem;
+    }
+
+    input {
+        font: 15px arial;
+    }
+
+        input:focus {
+            outline: none;
+            font: 15px arial;
+        }
+
+    #data_inicial, #data_final {
+        width: 6rem;
+    }
+
+
+    .cabecalho {
+        background: #17A67D;
+        font-family: Open Sans, Arial, Helvetica, Sans-serif;
+        font-size: 26px;
+        color: #fff;
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .container_hsc {
+        padding: 3em;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .btn-bkg {
+        background-color: #17A67D;
+    }
+
+    .footer_hmsc {
+        background: #ffab62;
+        width: 100%;
+        height: 100px;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .container {
+        padding: 0;
+        margin-left: 1vw;
+        margin-right: 1vw;
+    }
+
+
+    .ls-label-text {
+        color: #555555;
+        font-weight: bold;
+        line-height: 19.8px;
+        font-size: 19px;
+    }
+
+    .td_assunto {
+        width: 45em;
+    }
+
+    .td_data_envio, .td_data_abertura {
+        width: 15em;
+    }
+
+    .td_remetente {
+        width: 25em;
+    }
+
+    .td_destinatario {
+        width: 25em;
+    }
+
+    .td_status {
+        width: 15em;
+    }
+
+
+    .ls-box-filter, .loading-search-results, .ls-display-none {
+        display: none;
+    }
+
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .ls-input-text, input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"],
+    input[type="email"], input[type="month"], input[type="number"], input[type="password"],
+    input[type="search"], input[type="tel"], input[type="text"], input[type="time"],
+    input[type="url"], input[type="week"], textarea {
+        -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+        box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+        -moz-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        font-family: Open Sans, Arial, Helvetica, Sans-serif;
+        font-size: 13px;
+        padding: 6px 11px 7px;
+        vertical-align: middle;
+        background-color: white;
+        background-image: none;
+        border: 1px solid #dddddd;
+        border-radius: 4px;
+        line-height: 1.42857;
+    }
+
+
+    .table-style {
+        display: table;
+        text-indent: initial;
+        border-spacing: 2px;
+        border-color: grey;
+        color: #555555;
+        font-size: 100%;
+        line-height: 1;
+        font-family: Open Sans, Arial, Helvetica, Sans-serif;
+    }
+
+
+    .ls-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        margin: 20px 0;
+        border-bottom: 1px solid #dddddd;
+    }
+
+</style>
+
+<script>
+    function mascaraData(val) {
+        var pass = val.value;
+        var expr = /[0123456789]/;
+
+        for (i = 0; i < pass.length; i++) {
+            // charAt -> retorna o caractere posicionado no índice especificado
+            var lchar = val.value.charAt(i);
+            var nchar = val.value.charAt(i + 1);
+
+            if (i == 0) {
+                // search -> retorna um valor inteiro, indicando a posição do inicio da primeira
+                // ocorrência de expReg dentro de instStr. Se nenhuma ocorrencia for encontrada o método retornara -1
+                // instStr.search(expReg);
+                if ((lchar.search(expr) != 0) || (lchar > 3)) {
+                    val.value = "";
+                }
+
+            } else if (i == 1) {
+
+                if (lchar.search(expr) != 0) {
+                    // substring(indice1,indice2)
+                    // indice1, indice2 -> será usado para delimitar a string
+                    var tst1 = val.value.substring(0, (i));
+                    val.value = tst1;
+                    continue;
+                }
+
+                if ((nchar != '/') && (nchar != '')) {
+                    var tst1 = val.value.substring(0, (i) + 1);
+
+                    if (nchar.search(expr) != 0)
+                        var tst2 = val.value.substring(i + 2, pass.length);
+                    else
+                        var tst2 = val.value.substring(i + 1, pass.length);
+
+                    val.value = tst1 + '/' + tst2;
+                }
+
+            } else if (i == 4) {
+
+                if (lchar.search(expr) != 0) {
+                    var tst1 = val.value.substring(0, (i));
+                    val.value = tst1;
+                    continue;
+                }
+
+                if ((nchar != '/') && (nchar != '')) {
+                    var tst1 = val.value.substring(0, (i) + 1);
+
+                    if (nchar.search(expr) != 0)
+                        var tst2 = val.value.substring(i + 2, pass.length);
+                    else
+                        var tst2 = val.value.substring(i + 1, pass.length);
+
+                    val.value = tst1 + '/' + tst2;
+                }
+            }
+
+            if (i >= 6) {
+                if (lchar.search(expr) != 0) {
+                    var tst1 = val.value.substring(0, (i));
+                    val.value = tst1;
+                }
+            }
+        }
+
+        if (pass.length > 10)
+            val.value = val.value.substring(0, 10);
+        return true;
+    }
+</script>
