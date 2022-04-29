@@ -52,7 +52,7 @@ public class Emails
             string dt_inicial = datainicial; //.Replace("/", "%2F");
             string dt_final = datafinal;//.Replace("/", "%2F");
             url += "&range_start="+ dt_inicial + "&range_end="+ dt_final ;
-            url += "&per=25&search="+ destinatario + "&_=1651067821302";
+            url += "&per=250&search="+ destinatario + "&_=1651067821302";
 
             var requisicaoWeb = WebRequest.CreateHttp(url);
             requisicaoWeb.Method = "GET";
