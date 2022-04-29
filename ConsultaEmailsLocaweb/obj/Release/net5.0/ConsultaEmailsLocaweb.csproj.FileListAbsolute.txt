@@ -404,4 +404,3 @@ C:\Users\magno.teodoro\Source\Repos\ConsultaEmailsLocaweb\ConsultaEmailsLocaweb\
 C:\Users\magno.teodoro\Source\Repos\ConsultaEmailsLocaweb\ConsultaEmailsLocaweb\obj\Release\net5.0\ref\ConsultaEmailsLocaweb.dll
 C:\Users\magno.teodoro\Source\Repos\ConsultaEmailsLocaweb\ConsultaEmailsLocaweb\obj\Release\net5.0\ConsultaEmailsLocaweb.pdb
 C:\Users\magno.teodoro\Source\Repos\ConsultaEmailsLocaweb\ConsultaEmailsLocaweb\obj\Release\net5.0\ConsultaEmailsLocaweb.genruntimeconfig.cache
-C:\Users\magno.teodoro\Source\Repos\ConsultaEmailsLocaweb\ConsultaEmailsLocaweb\obj\Release\net5.0\ConsultaEmailsLocaweb.csproj.AssemblyReference.cache
